@@ -10,7 +10,7 @@ const Output = (props)=>{
 
     const deleteHandler = async(_id)=>{
       try {
-        await axios.delete('http://localhost:8000/', {
+        await axios.delete('https://todoapp-mern-g38t.onrender.com/', {
             data: { _id } // Use the `data` property to send the request body
         });
        
