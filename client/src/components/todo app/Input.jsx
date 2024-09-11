@@ -1,5 +1,5 @@
 
-import Button  from "./button";
+import Button  from "./Button";
 
 import { useDispatch } from "react-redux";
 import { todoAppActions } from "../../store/todoStore/todoAPP";
