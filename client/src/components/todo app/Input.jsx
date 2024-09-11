@@ -19,7 +19,7 @@ const Input = (props)=>{
             work:workRef.current.value,
             date:dateRef.current.value
         }
-        const response = await axios.post('https://todoapp-mern-g38t.onrender.com/',payload);
+        const response = await axios.post('https://todoapp-mern-g38t.onrender.com',payload);
         payload._id = response.data._id;
         dispatch(todoAppActions.add(payload))
         workRef.current.value=null
@@ -36,7 +36,7 @@ const Input = (props)=>{
                 work:workRef.current.value,
                 date:dateRef.current.value
             }
-            await axios.put('https://todoapp-mern-g38t.onrender.com/',payload);
+            await axios.put('https://todoapp-mern-g38t.onrender.com',payload);
             dispatch(todoAppActions.edit(payload))
             // Reset state and form fields
             setIdUpdater(null);
