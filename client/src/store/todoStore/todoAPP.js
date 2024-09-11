@@ -5,7 +5,7 @@ import axios from "axios";
 
 
 export const getAllTodo = createAsyncThunk('todos/getAllTodo', async ()=>{
-    const response = await axios.get('https://todoapp-mern-g38t.onrender.com/')
+    const response = await axios.get('https://todoapp-mern-g38t.onrender.com')
     console.log(response.data);
     return response.data
 })
