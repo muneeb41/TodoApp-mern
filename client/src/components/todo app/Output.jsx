@@ -1,11 +1,10 @@
 import Button from "./Button";
 import { useDispatch } from "react-redux";
 import { todoAppActions } from "../../store/todoStore/todoAPP";
-import axios from "axios";
+import api from "../../api/serverApi";
 
 const Output = (props)=>{
 
-    const url = 'http://localhost:8000'
     const dispatch = useDispatch();
 
     const deleteHandler = async(_id)=>{
@@ -18,12 +17,8 @@ const Output = (props)=>{
       throw new Error('No token found');
     }
   
-    const { token } = userData;
     
-        await axios.delete(url+'/todos/', {
-          headers: {
-            Authorization: `Bearer ${token}`, // Send the token as a Bearer token
-          },
+        await api.delete('/todos/', {
             data: { _id } // Use the `data` property to send the request body
         });
        

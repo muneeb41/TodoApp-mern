@@ -11,7 +11,11 @@ const userRouter = require('./routes/userRoutes.js');
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:5173', // Allow your frontend to access the API
+    methods: ['GET', 'POST', 'DELETE', 'PUT'], // Specify allowed methods
+    credentials: true // If you need to allow credentials
+  }));
 app.use('/todos',router);
 app.use('/user',userRouter);
 

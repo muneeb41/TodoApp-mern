@@ -1,15 +1,15 @@
 
 import Button  from "./Button";
-
+import api from "../../api/serverApi";
 import { useDispatch } from "react-redux";
 import { todoAppActions } from "../../store/todoStore/todoAPP";
-import axios from 'axios'
-import { json } from "react-router-dom";
+
+
+
 
 
 const Input = (props)=>{
     
-    const url = 'http://localhost:8000'
     const {workRef,dateRef,idUpdater,setIdUpdater} = props;
 
      const dispatch = useDispatch()
@@ -28,11 +28,7 @@ const Input = (props)=>{
             date:dateRef.current.value,
             email: userData.email
         }
-        const response = await axios.post(url+'/todos/',payload,{
-            headers: {
-                Authorization: `Bearer ${token}`, // Send the token as a Bearer token
-              },
-        });
+        const response = await api.post('/todos/',payload);
         payload._id = response.data._id;
         dispatch(todoAppActions.add(payload))
         workRef.current.value=null
@@ -61,11 +57,7 @@ const Input = (props)=>{
       
         try {
           // Make the PUT request with the token in headers and payload as the body
-          await axios.put(`${url}/todos/`, payload, {
-            headers: {
-              Authorization: `Bearer ${token}`, // Send the token as a Bearer token
-            },
-          });
+          await api.put(`/todos/`, payload);
       
           // Dispatch action to Redux store
           dispatch(todoAppActions.edit(payload));

@@ -1,10 +1,10 @@
 
 import { createSlice , createAsyncThunk} from "@reduxjs/toolkit";
-import axios from "axios";
+import api from "../../api/serverApi";
 
 
 export const getAllTodo = createAsyncThunk('todos/getAllTodo', async () => {
-    const url = 'http://localhost:8000';
+   
     
     // Retrieve and parse userData from localStorage
     const storedUserData = localStorage.getItem('userData');
@@ -14,16 +14,12 @@ export const getAllTodo = createAsyncThunk('todos/getAllTodo', async () => {
       throw new Error('No token found');
     }
   
-    const { token , email} = userData;
+    const {email} = userData;
     
-    const response = await axios.get(url + '/todos/', {
-      headers: {
-        Authorization: `Bearer ${token}`, // Send the token as a Bearer token
-      },
-      params: {
-        email
-      },
-    });
+    // Use the api instance to make the request
+  const response = await api.get('/todos/', {
+    params: { email }, // Send email as a query parameter
+  });
   
     return response.data;
   });
