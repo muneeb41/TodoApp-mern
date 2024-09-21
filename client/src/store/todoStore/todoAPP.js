@@ -3,12 +3,30 @@ import { createSlice , createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios";
 
 
-
-export const getAllTodo = createAsyncThunk('todos/getAllTodo', async ()=>{
-    const response = await axios.get('https://todoapp-mern-g38t.onrender.com')
+export const getAllTodo = createAsyncThunk('todos/getAllTodo', async () => {
+    const url = 'http://localhost:8000';
     
-    return response.data
-})
+    // Retrieve and parse userData from localStorage
+    const storedUserData = localStorage.getItem('userData');
+    const userData = storedUserData ? JSON.parse(storedUserData) : null;
+  
+    if (!userData || !userData.token) {
+      throw new Error('No token found');
+    }
+  
+    const { token , email} = userData;
+    
+    const response = await axios.get(url + '/todos/', {
+      headers: {
+        Authorization: `Bearer ${token}`, // Send the token as a Bearer token
+      },
+      params: {
+        email
+      },
+    });
+  
+    return response.data;
+  });
 
 
 
@@ -42,6 +60,11 @@ const todoSlice = createSlice({
             });
             
             return state; 
+        },
+        logout : (state,action)=>{
+            state.todos = []
+            state.status = 'failed'
+            return state;
         }        
     },
     extraReducers : (builder)=>{

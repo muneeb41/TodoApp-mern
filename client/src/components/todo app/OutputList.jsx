@@ -20,7 +20,7 @@ const OutputList = (props) => {
 
 
 if (status === 'loading') return <div>Loading...</div>;
-if (status === 'failed') return <div>Error occurred!</div>;
+if (status === 'failed') return <div>Please signin or login</div>;
 
    
   return (

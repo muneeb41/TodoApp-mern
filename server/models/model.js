@@ -11,6 +11,10 @@ const todoSchema = new Schema({
   },
   date: {
     type: String
+  },
+  email:{
+    type: String,
+    required: true
   }
 });
 

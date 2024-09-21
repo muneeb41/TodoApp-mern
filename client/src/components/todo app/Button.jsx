@@ -14,7 +14,7 @@ const Button = (props)=>{
 
     return (
         <button onClick={handler}
-        className={`w-24 rounded-lg text-white bg-${props.color}-500 active:bg-${props.color}-700`}
+        className={`w-24 rounded-lg text-white bg-${props.color}-500 active:bg-${props.color}-700 sm:py-1`}
          >{props.text}</button>
     );
 }

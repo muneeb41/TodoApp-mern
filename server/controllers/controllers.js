@@ -4,7 +4,8 @@ const {TodoModel} = require('../models/model')
 
 exports.getTodo = async (req, res) => {
   try {
-    const data = await TodoModel.find({})
+    const email = req.query.email; // Access email from query parameters
+    const data = await TodoModel.find({email:email})
     res.status(200).json(data);
   } catch (error) {
     console.log(error);
