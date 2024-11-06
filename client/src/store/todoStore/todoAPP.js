@@ -20,7 +20,7 @@ export const getAllTodo = createAsyncThunk('todos/getAllTodo', async () => {
   const response = await api.get('/todos/', {
     params: { email }, // Send email as a query parameter
   });
-  
+      
     return response.data;
   });
 

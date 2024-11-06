@@ -3,6 +3,7 @@ import React, { useState  } from 'react';
 import { useDispatch } from 'react-redux';
 import { UserAuthAction } from '../../store/userStore/userAuth';
 import { useNavigate } from 'react-router-dom';
+import api from '../../api/serverApi';
 
 
 
@@ -32,7 +33,7 @@ const handleSubmit = async (e) => {
     
     try {
       // Make the API request to the backend
-      const response = await axios.post(`${url}/user/signin`, formData);
+      const response = await api.post(`/user/signin`, formData);
   
       // Check the response data
       if (response.data.message === "User already signed in") {

@@ -3,9 +3,9 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // If you're using react-router for navigation
 import { useDispatch } from 'react-redux';
 import { UserAuthAction } from '../../store/userStore/userAuth';
-
+import api from '../../api/serverApi';
 const Login = () => {
-  const url = 'http://localhost:8000'
+  
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -23,9 +23,9 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${url}/user/login`, formData);
+      const response = await api.post(`/user/login`, formData);
       const { name, email, token } = response.data;
-
+  
       const payload = { name, email, token };
       dispatch(UserAuthAction.login(payload));
       navigate('/');

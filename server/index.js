@@ -10,9 +10,14 @@ const userRouter = require('./routes/userRoutes.js');
 
 const app = express();
 
+const allowedOrigins = [
+  'https://todoapp-mern-client.onrender.com', // Production URL
+  'http://localhost:5173' // Local development URL
+];
+
 app.use(express.json());
 app.use(cors({
-    origin: 'https://todoapp-mern-client.onrender.com', // Allow your frontend to access the API
+    origin: allowedOrigins, // Allow your frontend to access the API
     methods: ['GET', 'POST', 'DELETE', 'PUT'], // Specify allowed methods
     credentials: true // If you need to allow credentials
   }));
